@@ -1,3 +1,5 @@
+import {PALAVRAS_RUINS} from "./palavrasRuins.js";
+
 const botaoMostraPalavras = document.querySelector('#botao-palavrachave');
 
 botaoMostraPalavras.addEventListener('click', mostraPalavraChave);
@@ -20,7 +22,7 @@ function processaTexto(texto) {
 
     let ordenadas = Object.keys(frequencias).sort(ordenaPalavra);
     function ordenaPalavra(p1, p2){
-        return frequencia[p2] - frequencias[p1];
+        return frequencias[p2] - frequencias[p1];
     }
     return ordenadas.slice(0,10);
 }
@@ -37,4 +39,14 @@ function processaTexto(texto) {
         }
     }
     return palavras;
+}
+function tiraPalavrasRuins(palavras) {
+    //const PALAVRAS_RUINS = new setInterval(["para", "uma","nós"]); //tem muito mais!!
+    //const palavrasBoas =[];
+    for (let palavra of palavras) {
+        if (!PALAVRAS_RUINS.has(palavra) && palavra.lenght > 2) {
+            palavrasBoas.push(palavra);
+        }
+    }
+    return palavrasBoas;
 }
